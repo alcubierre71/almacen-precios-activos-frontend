@@ -1,0 +1,14 @@
+table.mat-mdc-table {
+    background-color: #b0bec9; /* light gray background */
+}
+.mat-mdc-header-row {
+    background-color: #4a3434;
+    color: white;
+}
+.mat-row:hover {
+    background-color: #e0e0e0;
+}
+
+.table-container {
+    margin-top: 20px; /* Adjust as needed */
+}

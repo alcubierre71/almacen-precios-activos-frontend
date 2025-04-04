@@ -60,7 +60,7 @@ export class AssetComponent implements OnInit {
   ngAfterViewInit() {
     //this.dataSource = new MatTableDataSource(this.assets);
     //this.dataSource.paginator = this.paginator;   // paginacion
-    this.dataSource.sort = this.sort;             // ordenacion
+    //this.dataSource.sort = this.sort;             // ordenacion
   }
 
   loadAssets(): void {
@@ -76,7 +76,7 @@ export class AssetComponent implements OnInit {
         console.log('Received data from backend:', this.assets);  // ← test this
         this.dataSource = new MatTableDataSource(this.assets);
         this.dataSource.paginator = this.paginator;   // paginacion
-        //this.dataSource.sort = this.sort;             // ordenacion
+        this.dataSource.sort = this.sort;             // ordenacion
       },
       error: (err: any) => {
         console.error('Error loading assets:', err);
