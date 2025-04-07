@@ -1,8 +1,17 @@
-<h2>Asset Management</h2>
 
-<button mat-raised-button color="primary" routerLink="/assets/create">
-  Create New Asset
-</button>
+<mat-toolbar color="primary" class="toolbar-title">
+  <span>Asset Management</span>
+</mat-toolbar>
+
+<!-- <mat-card class="title-card">
+  <mat-card-title>Asset Management</mat-card-title>
+</mat-card> -->
+
+<div class="button-container">
+  <button mat-raised-button color="primary" routerLink="/assets/create">
+    Create New Asset
+  </button>
+</div>
 
 <br />
 
@@ -66,4 +75,6 @@
 </mat-paginator>
 
 <br />
-<a routerLink="/">Back to Home Page</a>
+<div class="link-container">
+  <a routerLink="/">Back to Home Page</a>
+</div>

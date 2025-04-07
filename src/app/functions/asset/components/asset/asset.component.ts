@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AssetService } from '../../../shared/services/asset.service';
 import { Observable, Observer, Subscription } from 'rxjs';
@@ -13,6 +13,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
+import { ConfirmComponent } from '../../../shared/components/confirm/confirm.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,7 +30,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatToolbarModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule
   ],
   templateUrl: './asset.component.html',
   styleUrls: ['./asset.component.css']
@@ -35,6 +40,10 @@ export class AssetComponent implements OnInit {
 
   // Inyectamos el Servicio de Assets
   private assetService = inject(AssetService);
+  public  dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
+
+  private router = inject(Router);
 
   displayedColumns: string[] = ['id', 'code', 'description', 'type', 'sector', 'market', 'codeAlt', 'actions'];
   assets: any[] = [];
@@ -90,13 +99,47 @@ export class AssetComponent implements OnInit {
 
   }
 
-  onEdit(id: number): void {
-    console.log('Edit asset with ID:', id);
+  onEdit(assetId: number): void {
+    console.log('Edit asset with ID:', assetId);
     // Navigate or open a form here
+    this.router.navigate(['/assets/update', assetId]);
   }
 
-  onDelete(id: number): void {
-    console.log('Delete asset with ID:', id);
+  onDelete(id1: number): void {
+    console.log('Delete asset with ID:', id1);
+
+    // Se abre un Dialog que contiene en su interior el componente ConfirmComponent
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+     width: '450px',   // ancho de la ventana del dialog
+     data: {id: id1, module: "asset"}, // se indica el tipo de objeto a eliminar (empresa)
+    });
+
     // Call API to delete here
+    // Logica a ejecutar una vez se haya cerrado la ventana Dialog
+    dialogRef.afterClosed().subscribe( (result: any) => {
+      console.log('The dialog was closed');
+        
+      // Controlamos el retorno correcto o error
+      if (result == 1) {
+        this.openSnackBar("Asset deleted", "Exito");
+        // Recargamos la tabla de registros
+        this.loadAssets();
+      } else if (result == 2) {
+        this.openSnackBar("Se produjo un error al eliminar empresa", "Error");
+      }
+  
+    });
+
   }
+
+  /**
+   * Abrir mensaje en una ventana
+   * --- Esto podria estar en el modulo shared --- 
+   */
+  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
+
+      return this.snackBar.open(message, action, {duration: 2000});
+  
+  }
+
 }

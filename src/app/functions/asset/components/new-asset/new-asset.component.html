@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="toolbar-title">
+    <span>{{estadoFormulario}} Asset</span>
+</mat-toolbar>
+
+<div class="form-wrapper">
+<mat-card class="asset-card">
+    <mat-card-title>{{estadoFormulario}} Asset</mat-card-title>
+
+    <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Code</mat-label>
+        <input matInput formControlName="code" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Sector</mat-label>
+        <input matInput formControlName="sector" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Market</mat-label>
+        <input matInput formControlName="market" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Alternate Code</mat-label>
+        <input matInput formControlName="codeAlt" required>
+      </mat-form-field>
+  
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="assetForm.invalid">Save</button>
+        <button mat-button routerLink="/assets" type="button">Cancel</button>
+      </div>
+    </form>
+</mat-card>
+</div>

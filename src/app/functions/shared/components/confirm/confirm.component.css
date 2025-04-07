@@ -1,0 +1,4 @@
+::ng-deep .mat-dialog-container {
+    background-color: #9da447;  /* light lime background */
+    border-radius: 12px;
+}
