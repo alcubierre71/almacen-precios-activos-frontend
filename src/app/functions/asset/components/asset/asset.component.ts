@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AssetService } from '../../../shared/services/asset.service';
 import { Observable, Observer, Subscription } from 'rxjs';
 import { AssetElement } from './asset-element';
-import { AssetDto } from '../../../shared/services/asset-dto';
+//import { AssetDto } from '../../../shared/services/asset-dto';
 // Angular Material
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ConfirmComponent } from '../../../shared/components/confirm/confirm.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { ToolbarComponent } from '../../../shared/components/toolbar/toolbar.component';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -31,7 +33,9 @@ import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/s
     MatToolbarModule,
     MatPaginatorModule,
     MatSortModule,
-    MatCardModule
+    MatCardModule,
+    ToolbarComponent,
+    MatTooltipModule
   ],
   templateUrl: './asset.component.html',
   styleUrls: ['./asset.component.css']
@@ -47,7 +51,7 @@ export class AssetComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'code', 'description', 'type', 'sector', 'market', 'codeAlt', 'actions'];
   assets: any[] = [];
-  dataSource!: MatTableDataSource<AssetDto>;
+  dataSource!: MatTableDataSource<AssetElement>;
   sub!: Subscription;  // Esto significa que la variable sera definida posteriormente
 
   // Obtencion de referencia del componente <mat-paginator> del DOM 
@@ -77,10 +81,10 @@ export class AssetComponent implements OnInit {
     //  .get<any[]>('http://localhost:7070/api/asset_price_store/asset')
     //  .subscribe((data) => (this.assets = data));
 
-    let assetObs : Observable<AssetDto[]> = this.assetService.getAllAssets();
+    let assetObs : Observable<AssetElement[]> = this.assetService.getAllAssets();
 
-    const iObserver: Observer<AssetDto[]> = {
-      next: (data: AssetDto[]) => {
+    const iObserver: Observer<AssetElement[]> = {
+      next: (data: AssetElement[]) => {
         this.assets = data;
         console.log('Received data from backend:', this.assets);  // ← test this
         this.dataSource = new MatTableDataSource(this.assets);

@@ -32,21 +32,35 @@ h1.app-name {
     /*  margin-top: 15px; */
 }
 
+.home-card {
+  max-width: 800px;
+  margin: 40px auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+mat-card img {
+  max-height: 300px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;
-  }
+}
   
-  nav li {
+nav li {
     margin: 8px 0;
-  }
+}
   
-  a {
+a {
     color: #007bff;
     text-decoration: none;
-  }
+}
   
-  a:hover {
+a:hover {
     text-decoration: underline;
-  }
+}
   

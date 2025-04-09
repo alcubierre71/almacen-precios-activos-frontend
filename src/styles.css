@@ -4,4 +4,14 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
+
+.page-title {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.page-copyright {
+    text-align: center;
+    margin-top: 24px;
+    padding-bottom: 24px;
+}

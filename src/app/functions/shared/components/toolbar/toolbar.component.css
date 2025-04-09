@@ -1,0 +1,21 @@
+.app-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+  
+.spacer {
+    flex: 1 1 auto;
+}
+  
+a {
+    text-decoration: none;
+    color: white;
+    margin-left: 12px;
+}
+
+.toolbar-title {
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
