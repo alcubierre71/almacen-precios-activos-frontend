@@ -1,5 +1,5 @@
-// Market Objetct
-export interface MarketDto {
+// Object Asset
+export interface MarketElement {
     id?: number;
     code: string;
     description: string;
