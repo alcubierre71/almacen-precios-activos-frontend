@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="toolbar-title">
+    <span>{{estadoFormulario}} Market</span>
+  </mat-toolbar>
+  
+  <div class="form-wrapper">
+    <mat-card class="asset-card">
+      <mat-card-title>{{estadoFormulario}} Market</mat-card-title>
+  
+      <form [formGroup]="marketForm" (ngSubmit)="onSubmit()">
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Code</mat-label>
+          <input matInput formControlName="code" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Sector</mat-label>
+          <input matInput formControlName="sector" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country" required>
+        </mat-form-field>
+  
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="marketForm.invalid">Save</button>
+          <button mat-button routerLink="/markets" type="button">Cancel</button>
+        </div>
+  
+      </form>
+    </mat-card>
+  </div>
+ 

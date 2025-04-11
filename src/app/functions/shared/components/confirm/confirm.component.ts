@@ -3,6 +3,7 @@ import { AssetService } from '../../services/asset.service';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogContainer, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { MarketService } from '../../services/market.service';
 
 @Component({
   selector: 'app-confirm',
@@ -19,7 +20,7 @@ export class ConfirmComponent {
   // Inyecciones
   public dialogRef = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);   // token que permite acceder a los datos del Dialog 
-  //public mercadoService = inject(MercadoService);
+  public marketService = inject(MarketService);
   public assetService = inject(AssetService); // EmpresaService
 
   /**
@@ -42,20 +43,20 @@ export class ConfirmComponent {
     if (this.data != null) {
 
       // Tratamiento para borrado de objeto Mercado
-      if (this.data.module == "mercado") {
+      if (this.data.module == "market") {
 
-        // let obsMercadoDelete: Observable<Object> = this.mercadoService.eliminarMercado(this.data.id);
+        let obsMarketDelete: Observable<void> = this.marketService.deleteMarket(this.data.id);
 
-        // obsMercadoDelete.subscribe({
-        //   next: (item:any) => {
-        //     this.dialogRef.close(1);   // retorno correcto "1"
-        //   }s
-        //   ,
-        //   error: (error:any) => {
-        //     this.dialogRef.close(2);   // retorno error "2"
-        //   }
+        obsMarketDelete.subscribe({
+           next: (item:any) => {
+             this.dialogRef.close(1);   // retorno correcto "1"
+           }
+           ,
+           error: (error:any) => {
+             this.dialogRef.close(2);   // retorno error "2"
+           }
 
-        // });
+        });
 
       } else if (this.data.module == "asset") {
           // Tratamiento para borrado de objeto Empresa

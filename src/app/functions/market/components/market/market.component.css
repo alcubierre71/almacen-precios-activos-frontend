@@ -5,47 +5,48 @@
     margin-bottom: 10px;
   }
   
-  .button-container {
+.button-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
-  }
+}
   
-  button:hover {
+button:hover {
     transform: scale(1.03);
     transition: all 0.2s ease-in-out;
-  }
+}
   
-  .table-container {
+.table-container {
     margin-top: 20px;
     padding: 0 24px;
-  }
+}
   
-  table.mat-mdc-table {
+table.mat-mdc-table {
     background-color: #c5d8e3;
-  }
+}
   
-  .mat-mdc-header-row {
-    background-color: #3949ab;
+.mat-mdc-header-row {
+    /* background-color: #3949ab; */
+    background-color: rgb(10, 46, 4);
     color: white;
-  }
+}
   
-  .mat-mdc-row:hover {
+.mat-mdc-row:hover {
     background-color: #e3f2fd;
-  }
+}
   
-  .link-container {
+.link-container {
     display: flex;
     justify-content: center;
     margin-top: 30px;
-  }
+}
   
-  .title-card {
+.title-card {
     text-align: center;
     margin-bottom: 20px;
     background-color: #f5f5f5;
     font-size: 24px;
     font-weight: bold;
-  }
+}
   
